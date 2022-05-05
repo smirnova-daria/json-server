@@ -1,6 +1,9 @@
 import {
 	render
 } from './render'
+import {
+	showErrorBlock
+} from './helpers'
 
 export const changePermissions = () => {
 	const tbody = document.getElementById('table-body')
@@ -16,7 +19,11 @@ export const changePermissions = () => {
 			}).then(res => {
 				userService.getUsers().then(users => {
 					render(users)
+				}).catch(() => {
+					showErrorBlock()
 				})
+			}).catch(() => {
+				showErrorBlock()
 			})
 		}
 	})

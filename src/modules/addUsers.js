@@ -1,6 +1,9 @@
 import {
 	render
 } from './render'
+import {
+	showErrorBlock
+} from './helpers'
 
 export const addUsers = () => {
 	const form = document.querySelector('form')
@@ -22,7 +25,11 @@ export const addUsers = () => {
 				userService.getUsers().then(users => {
 					render(users)
 					form.reset()
+				}).catch(() => {
+					showErrorBlock()
 				})
+			}).catch(() => {
+				showErrorBlock()
 			})
 		}
 	})

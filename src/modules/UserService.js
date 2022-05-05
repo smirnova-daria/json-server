@@ -1,65 +1,65 @@
 export class UserService {
-	getUsers() {
-		return fetch('http://localhost:4545/users')
-			.then(res => res.json())
+	async getData(url) {
+		return fetch(url).then(res => res.json())
 	}
-
-	addUser(user) {
-		return fetch('http://localhost:4545/users', {
-			method: 'POST',
+	async sendData(options) {
+		return fetch(options.url, {
+			method: options.method,
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(user)
+			body: options.body
 		}).then(res => res.json())
 	}
 
+	getUsers() {
+		return this.getData('http://localhost:4545/users')
+	}
+
+	addUser(user) {
+		return this.sendData({
+			url: 'http://localhost:4545/users',
+			method: 'POST',
+			body: JSON.stringify(user)
+		})
+	}
+
 	removeUser(id) {
-		return fetch(`http://localhost:4545/users/${id}`, {
-				method: 'DELETE'
-			})
-			.then(res => res.json())
+		return this.sendData({
+			url: `http://localhost:4545/users/${id}`,
+			method: 'DELETE'
+		})
 	}
 
 	changeUser(id, data) {
-		return fetch(`http://localhost:4545/users/${id}`, {
-				method: 'PATCH',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			})
-			.then(res => res.json())
+		return this.sendData({
+			url: `http://localhost:4545/users/${id}`,
+			method: 'PATCH',
+			body: JSON.stringify(data),
+		})
 	}
 
 	getUser(id) {
-		return fetch(`http://localhost:4545/users/${id}`)
-			.then(res => res.json())
+		return this.getData(`http://localhost:4545/users/${id}`)
 	}
 
 	editUser(id, user) {
-		return fetch(`http://localhost:4545/users/${id}`, {
-				method: 'PUT',
-				body: JSON.stringify(user),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			})
-			.then(res => res.json())
+		return this.sendData({
+			url: `http://localhost:4545/users/${id}`,
+			method: 'PUT',
+			body: JSON.stringify(user)
+		})
 	}
 
 	filterUsers(filterOption) {
-		return fetch(`http://localhost:4545/users?${filterOption}=true`)
-			.then(res => res.json())
+		return this.getData(`http://localhost:4545/users?${filterOption}=true`)
 	}
 
 	getSortUsers(sortOption) {
-		return fetch(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.value}`)
-			.then(res => res.json())
+		return this.getData(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.value}`)
 	}
 
 	getSearchUser(str) {
-		return fetch(`http://localhost:4545/users?name_like=${str}`)
-			.then(res => res.json())
+		return this.getData(`http://localhost:4545/users?name_like=${str}`)
 	}
 }

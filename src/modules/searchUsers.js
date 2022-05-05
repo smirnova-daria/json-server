@@ -4,6 +4,9 @@ import {
 import {
 	debounce
 } from './helpers'
+import {
+	showErrorBlock
+} from './helpers'
 
 export const searchUsers = () => {
 	const input = document.getElementById('search-input')
@@ -11,6 +14,8 @@ export const searchUsers = () => {
 	const debounceSearch = debounce(() => {
 		userService.getSearchUser(input.value).then(users => {
 			render(users)
+		}).catch(() => {
+			showErrorBlock()
 		})
 	}, 500)
 

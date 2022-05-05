@@ -25,10 +25,15 @@ import {
 import {
 	searchUsers
 } from './modules/searchUsers'
+import {
+	showErrorBlock
+} from './modules/helpers'
 
 window.userService = new UserService
 userService.getUsers().then(data => {
 	render(data)
+}).catch(() => {
+	showErrorBlock()
 })
 
 addUsers()

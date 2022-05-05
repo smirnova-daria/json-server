@@ -1,6 +1,10 @@
 import {
 	render
 } from './render'
+import {
+	showErrorBlock
+} from './helpers'
+
 
 export const sortUsers = () => {
 	const headerSortIsCheldren = document.getElementById('sort-is-children')
@@ -13,6 +17,8 @@ export const sortUsers = () => {
 			value: isSort ? 'asc' : 'desc'
 		}).then(users => {
 			render(users)
+		}).catch(() => {
+			showErrorBlock()
 		})
 
 		isSort = !isSort
