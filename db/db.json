@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "name": "Mark1",
+      "email": "o1tto@gmail.com",
+      "children": true,
+      "permissions": false,
+      "id": 0
+    },
+    {
+      "name": "маша",
+      "email": "1@1.1",
+      "children": true,
+      "permissions": false,
+      "id": 3
+    },
+    {
+      "name": "alex",
+      "email": "1@1.1",
+      "children": false,
+      "permissions": true,
+      "id": 4
+    },
+    {
+      "name": "вова",
+      "email": "1@1.1",
+      "children": false,
+      "permissions": false,
+      "id": 6
+    },
+    {
+      "name": "катя1",
+      "email": "1@1.1",
+      "children": true,
+      "permissions": true,
+      "id": 7
+    },
+    {
+      "name": "боря",
+      "email": "1@1.1",
+      "children": true,
+      "permissions": true,
+      "id": 8
+    },
+    {
+      "name": "маша",
+      "email": "1@1.1",
+      "children": true,
+      "permissions": false,
+      "id": 9
+    }
+  ]
+}
